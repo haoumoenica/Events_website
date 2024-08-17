@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Event index
+{% endblock %}
+
+{% block body %}
+  <h1 class="my-5 text-danger">Vienna's best events, at your fingertip!</h1>
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xs-1 g-4">
+    {% for event in events %}
+      <div class="col">
+        <div class="card h-100 d-flex flex-column">
+          <img src="{{ event.image }}" class="card-img-top" alt="Event Image" />
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title text-danger">{{ event.name }}</h5>
+            <p class="card-text flex-grow-1">{{ event.description }}</p>
+            <p class="card-text mb-0">
+              <b class="text-danger">Date:</b> {{ event.dateStarttime ? event.dateStarttime|date('Y-m-d H:i:s') : '' }}
+            </p>
+          </div>
+          <div class="card-footer mt-auto d-flex justify-content-around">
+            <a href="{{ path('app_event_show', { id: event.id }) }}" class="btn btn-info text-white">Details</a>
+            <a href="{{ path('app_event_edit', { id: event.id }) }}" class="btn btn-warning text-white">Edit</a>
+            {{ include('event/_delete_form.html.twig') }}
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <div class="col-12">
+        <div class="alert alert-danger text-center" role="alert">No records found</div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

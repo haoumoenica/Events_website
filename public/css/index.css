@@ -1,0 +1,61 @@
+.card-img-top {
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: .25rem .25rem 0 0;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: .25rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+}
+
+.card-text {
+    margin-bottom: .5rem;
+}
+
+.card-footer .btn {
+    margin: 0 .5rem;
+}
+
+/* Sliding effect styles */
+.slide-in {
+    position: relative;
+    overflow: hidden;
+    font-size: 2rem; /* Adjust font size as needed */
+    font-family: 'Arial', sans-serif;
+}
+
+.slide-in::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: -100%;
+    white-space: nowrap;
+    color: #fff;
+    background: #DC3545;
+    animation: slideIn 3s ease-out forwards; /* Adjust duration as needed */
+}
+
+@keyframes slideIn {
+    from {
+        left: -100%;
+    }
+    to {
+        left: 0;
+    }
+}
