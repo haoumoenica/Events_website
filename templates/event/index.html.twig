@@ -6,6 +6,21 @@
 
 {% block body %}
   <h1 class="my-5 text-danger">Vienna's best events, at your fingertip!</h1>
+
+  <div class="mb-4">
+    <form method="get" action="{{ path('app_event_index') }}">
+      <div class="form-group">
+        <label for="type" class="form-label text-danger">Filter by Event Type:</label>
+        <select id="type" name="type" class="form-select" onchange="this.form.submit()">
+          <option class="text-danger" value="" {{ app.request.get('type') is null ? 'selected' : '' }}>All</option>
+          {% for type in types %}
+            <option class="text-danger" value="{{ type.id }}" {{ type.id == app.request.get('type') ? 'selected' : '' }}>{{ type.eventType }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </form>
+  </div>
+
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xs-1 g-4">
     {% for event in events %}
       <div class="col">
@@ -15,7 +30,7 @@
             <h5 class="card-title text-danger">{{ event.name }}</h5>
             <p class="card-text flex-grow-1">{{ event.description }}</p>
             <p class="card-text mb-0">
-              <b class="text-danger">Date:</b> {{ event.dateStarttime ? event.dateStarttime|date('Y-m-d H:i:s') : '' }}
+              <b class="text-danger">Date:</b> {{ event.dateStartTime ? event.dateStartTime|date('Y-m-d H:i:s') : '' }}
             </p>
           </div>
           <div class="card-footer mt-auto d-flex justify-content-around">
